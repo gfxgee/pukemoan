@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Yes</title>
+    <title>Puke Moan</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcbYr1unjyMn3gcwaDyrVfdn9bW2ELBjk&callback=initMap&libraries=&v=weekly" defer
