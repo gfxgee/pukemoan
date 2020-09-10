@@ -1,6 +1,7 @@
 let map;
 let markers = [];
 var iconBase = 'img/';
+let walk_multiplier = 0.0001;
 var icons = {
   parking: {
     icon: iconBase + 'tenor2.gif'
@@ -12,9 +13,15 @@ var icons = {
     icon: iconBase + 'info-i_maps.png'
   }
 };
-let current_location = { lat: 35.710, lng: 139.753 };
+var data = "Hello World!";
+let current_location = { lat: 8.475442, lng: 124.642130 };
+let treasure_place = { lat: 8.475442, lng: 124.642130 };
+let toggle_center = document.getElementById('toggleCenter');
+var infowindow;
 function initMap() {
-  
+    infowindow = new google.maps.InfoWindow({
+        content: data
+    });
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 17,
     disableDefaultUI: true,
@@ -228,14 +235,13 @@ function initMap() {
   // This event listener will call addMarker() when the map is clicked.
   map.addListener("click", event => {
     //deleteMarkers();
-    clearMarkers();
-    addMarker(event.latLng);
+    //clearMarkers();
+    //addMarker(event.latLng);
   });
   // Adds a marker at the center of the map.
   addMarker(current_location);
-  //randomMarker(haightAshbury);
+  randomMarker(current_location);
 }
-
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
   const marker = new google.maps.Marker({
@@ -245,12 +251,21 @@ function addMarker(location) {
   });
   
   markers.push(marker);
+  console.log(markers);
+  if(document.getElementById('toggleCenter').checked == true){
+    map.setCenter(current_location);
+  }
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+  randomMarker(treasure_place);
 }
 
 function randomMarker(location) {
     const marker = new google.maps.Marker({
       position: location,
       map: map,
+      title: 'Home',
       icon: icons['library'].icon
     });
     
@@ -279,29 +294,25 @@ function deleteMarkers() {
   markers = [];
 }
 function moveUp(){
-    current_location = { lat: current_location.lat + 0.001, lng: current_location.lng };
-    console.log(current_location);
+    current_location = { lat: current_location.lat + walk_multiplier, lng: current_location.lng };
     deleteMarkers();
     addMarker(current_location);
     //map.setCenter(current_location);
 }
 function moveDown(){
-    current_location = { lat: current_location.lat - 0.001, lng: current_location.lng };
-    console.log(current_location);
+    current_location = { lat: current_location.lat - walk_multiplier, lng: current_location.lng };
     deleteMarkers();
     addMarker(current_location);
     //map.setCenter(current_location);
 }
 function moveLeft(){
-    current_location = { lat: current_location.lat, lng: current_location.lng - 0.001 };
-    console.log(current_location);
+    current_location = { lat: current_location.lat, lng: current_location.lng - walk_multiplier };
     deleteMarkers();
     addMarker(current_location);
     //map.setCenter(current_location);
 }
 function moveRight(){
-    current_location = { lat: current_location.lat, lng: current_location.lng + 0.001 };
-    console.log(current_location);
+    current_location = { lat: current_location.lat, lng: current_location.lng + walk_multiplier };
     deleteMarkers();
     addMarker(current_location);
     //map.setCenter(current_location);
@@ -309,3 +320,24 @@ function moveRight(){
 function findMe(){
     map.setCenter(current_location);
 }
+document.addEventListener("keydown", function(e,v){
+    e.preventDefault();
+    if (e.keyCode == '38'){
+        moveUp();
+    }
+}, false);
+document.addEventListener("keydown", function(e,v){
+    if (e.keyCode == '40'){
+        moveDown();
+    }
+}, false);
+document.addEventListener("keydown", function(e,v){
+    if (e.keyCode == '37'){
+        moveLeft();
+    }
+}, false);
+document.addEventListener("keydown", function(e,v){
+    if (e.keyCode == '39'){
+        moveRight();
+    }
+}, false);

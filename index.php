@@ -19,12 +19,15 @@
       <div id="map"></div>
     </div>
     <br>
+    <p style="text-align:center;">Tip: You can use arrow keys to move.</p>
+    <br>
     <div class="navigation-controller" style="text-align:center;">
         <input onclick="moveUp();" type="button" value="Walk up ˄" />
         <input onclick="moveDown();" type="button" value="Walk down ˅" />
         <input onclick="moveLeft();" type="button" value="Walk Left ˂" />
         <input onclick="moveRight();" type="button" value="Walk Right ˃" />
-        <input onclick="findMe();" type="button" value="Find me" />
+        <input onclick="findMe();" type="button" value="Find me" /><br><br>
+        <input type="checkbox" id="toggleCenter" value="on"> Always center character
     </div>
     <div style="text-align:center;">
     <br>
