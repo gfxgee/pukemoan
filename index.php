@@ -20,6 +20,7 @@
     </div>
     <br>
     <p style="text-align:center;">Tip: You can use arrow keys to move.</p>
+    <p style="text-align:center;">Note: 80% chance to earn 0 - 10 points<br>19% change to earn 10 - 20 points<br> 1% change to earn 500 to 1000 points </p>
     <br>
     <div class="navigation-controller" style="text-align:center;">
         <input onclick="moveUp();" type="button" value="Walk up ˄" />
