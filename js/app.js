@@ -239,8 +239,9 @@ function initMap() {
     //addMarker(event.latLng);
   });
   // Adds a marker at the center of the map.
-  addMarker(current_location);
+  
   randomMarker(current_location);
+  addMarker(current_location);
 }
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
@@ -341,3 +342,16 @@ document.addEventListener("keydown", function(e,v){
         moveRight();
     }
 }, false);
+
+function generatePoints(){
+    var foo = Math.random() * 100;
+    var msg = "You got";
+    if (foo < 80){ // 0-79
+        
+        alert(msg +' ' + Math.floor(Math.random() * (10 - 0)) + 0);
+    }else if (foo < 99){ // 80-84
+        alert(msg +' ' +Math.floor(Math.random() * (20 - 10)) + 10);
+    }else{ // 85-99
+        alert(msg +' ' +Math.floor(Math.random() * (1000 - 500)) + 500);
+    }
+}

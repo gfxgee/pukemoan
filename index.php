@@ -31,7 +31,7 @@
     </div>
     <div style="text-align:center;">
     <br>
-      <button >Scan here</button>
+      <button onclick="generatePoints()">Scan here</button>
     </div>
 </body>
 </html>
